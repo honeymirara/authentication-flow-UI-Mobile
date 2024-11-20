@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native-reanimated/lib/typescript/Animated';
+import { StyleSheet, View} from 'react-native';
 
 export default function NotFoundScreen() {
   return (
