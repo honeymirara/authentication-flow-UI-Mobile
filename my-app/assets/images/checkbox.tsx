@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path, Rect } from "react-native-svg"
 
-function SvgComponent(props: any) {
+export default function Checkbox(props: any) {
   return (
     <Svg
       width={16}
@@ -23,4 +23,4 @@ function SvgComponent(props: any) {
   )
 }
 
-export default SvgComponent
+

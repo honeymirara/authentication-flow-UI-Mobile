@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-function SvgComponent(props: any) {
+export default function Eyeslash(props: any) {
   return (
     <Svg
       width={20}
@@ -29,4 +29,4 @@ function SvgComponent(props: any) {
   )
 }
 
-export default SvgComponent
+
