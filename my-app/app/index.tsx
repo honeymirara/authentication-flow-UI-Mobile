@@ -3,9 +3,18 @@ import Google from '../assets/images/google';
 import Warning from "@/assets/images/warning";
 import Eyeslash from "@/assets/images/eyeslash";
 import Checkbox from "@/assets/images/checkbox";
+import { useState } from "react";
+
 
 
 export default function LogIn() {
+    const [inputValue, setInputValue] = useState({})
+    const [flag, setFlag] = useState(false);
+
+    const changeValue = (e: any, id: any) => {
+        setInputValue({ ...inputValue, [id]: e.nativeEvent.text })
+    }
+
     return (
         <View style={styles.wrapper}>
             <Text style={styles.title}>Log In</Text>
@@ -20,14 +29,14 @@ export default function LogIn() {
             </View>
             <View style={styles.inputWrapper}>
                 <Text style={styles.inputText}>Email Adress</Text>
-                <TextInput style={styles.inputTag} placeholder={'Rhebhek@gmail.com'} placeholderTextColor={'#BABABA'}></TextInput>
+                <TextInput style={styles.inputTag} placeholder={'Rhebhek@gmail.com'} placeholderTextColor={'#BABABA'} onChange={(e)=> changeValue(e, 'email')}></TextInput>
             </View>
             <View style={styles.inputWrapper}>
                 <View style={styles.passwordTextWrapper}>
                     <Text style={styles.inputText}>Password</Text>
                     <Text style={styles.forgotPassText}>Forgot Password</Text>
                 </View>
-                <TextInput style={styles.inputTag} placeholder={'*******'} placeholderTextColor={'#BABABA'}></TextInput>
+                <TextInput style={styles.inputTag} placeholder={'*******'} placeholderTextColor={'#BABABA'} onChange={(e) => changeValue(e, 'password')}></TextInput>
                 <TouchableOpacity style={styles.eyeIcon}>
                     <Eyeslash></Eyeslash>
                 </TouchableOpacity>
@@ -36,15 +45,22 @@ export default function LogIn() {
                     <Text style={styles.warningText}>Please enter correct password</Text>
                 </View>
                 <View style={styles.keepMeWrapper}>
-                    <Checkbox></Checkbox>
+                    <TouchableOpacity onPress={() => {
+                        console.log('Before:', flag);
+                        setFlag(!flag);
+                        console.log('After:', !flag);
+                    }} style={[styles.checkbox, flag && styles.checkboxChecked]}>
+                        {flag && <Checkbox />}
+                    </TouchableOpacity>
+
                     <Text style={styles.keepMeSignedText}>Keep me signed in</Text>
                 </View>
-                <TouchableOpacity style={styles.loginButtonTag}>
+                <TouchableOpacity style={styles.loginButtonTag} onPress={() => console.log(inputValue)}>
                     <Text style={styles.loginTextTag}>Login</Text>
                 </TouchableOpacity>
                 <Text style={styles.signUpText}>Don’t have an Account? Sign up here</Text>
             </View>
-        </View>
+        </View >
     )
 }
 
@@ -170,6 +186,19 @@ const styles = StyleSheet.create({
         fontWeight: 400,
         color: '#191D23'
     },
+    checkbox: {
+        width: 20,
+        height: 20,
+        borderWidth: 2,
+        borderColor: '#5ACDBE',
+        borderRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+    },
+    checkboxChecked: {
+        backgroundColor: '#FFFFFF'
+    },
     loginButtonTag: {
         width: '100%',
         height: 50,
@@ -193,6 +222,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 400,
         color: '#1443C3',
-        textAlign:'center',
+        textAlign: 'center',
     }
 })
