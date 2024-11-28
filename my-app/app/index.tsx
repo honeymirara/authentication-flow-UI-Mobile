@@ -4,6 +4,7 @@ import Warning from "@/assets/images/warning";
 import Eyeslash from "@/assets/images/eyeslash";
 import Checkbox from "@/assets/images/checkbox";
 import { useState } from "react";
+import { Link } from "expo-router";
 
 
 
@@ -29,17 +30,19 @@ export default function LogIn() {
             </View>
             <View style={styles.inputWrapper}>
                 <Text style={styles.inputText}>Email Adress</Text>
-                <TextInput style={styles.inputTag} placeholder={'Rhebhek@gmail.com'} placeholderTextColor={'#BABABA'} onChange={(e)=> changeValue(e, 'email')}></TextInput>
+                <TextInput style={styles.inputTag} placeholder={'Rhebhek@gmail.com'} placeholderTextColor={'#BABABA'} onChange={(e) => changeValue(e, 'email')}></TextInput>
             </View>
             <View style={styles.inputWrapper}>
                 <View style={styles.passwordTextWrapper}>
                     <Text style={styles.inputText}>Password</Text>
                     <Text style={styles.forgotPassText}>Forgot Password</Text>
                 </View>
-                <TextInput style={styles.inputTag} placeholder={'*******'} placeholderTextColor={'#BABABA'} onChange={(e) => changeValue(e, 'password')}></TextInput>
-                <TouchableOpacity style={styles.eyeIcon}>
-                    <Eyeslash></Eyeslash>
-                </TouchableOpacity>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputTag} placeholder={'*******'} placeholderTextColor={'#BABABA'} secureTextEntry onChange={(e) => changeValue(e, 'password')}></TextInput>
+                    <TouchableOpacity style={styles.eyeIcon}>
+                        <Eyeslash></Eyeslash>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.enterCorrectWrapper}>
                     <Warning></Warning>
                     <Text style={styles.warningText}>Please enter correct password</Text>
@@ -58,7 +61,9 @@ export default function LogIn() {
                 <TouchableOpacity style={styles.loginButtonTag} onPress={() => console.log(inputValue)}>
                     <Text style={styles.loginTextTag}>Login</Text>
                 </TouchableOpacity>
-                <Text style={styles.signUpText}>Don’t have an Account? Sign up here</Text>
+                <Text style={styles.signUpText}>Don’t have an Account?
+                    <Link href="/signup" style={{ color: '#1443C3' }}> Sign up here</Link>
+                </Text>
             </View>
         </View >
     )
@@ -121,8 +126,7 @@ const styles = StyleSheet.create({
     inputWrapper: {
         justifyContent: 'flex-start',
         width: '100%',
-        marginBottom: 24,
-        position: 'relative',
+        marginBottom: 24
     },
     inputText: {
         fontFamily: 'SFProDisplay-Regular',
@@ -141,6 +145,11 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         paddingLeft: 16,
     },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+    },
     passwordTextWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -148,9 +157,7 @@ const styles = StyleSheet.create({
     },
     eyeIcon: {
         position: 'absolute',
-        right: 10,
-        top: '50%',
-        transform: [{ translateY: -77 }],
+        right: 16,
     },
     enterCorrectWrapper: {
         flexDirection: 'row',
@@ -221,7 +228,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SFProDisplay-Regular',
         fontSize: 14,
         fontWeight: 400,
-        color: '#1443C3',
+        color: '#131212',
         textAlign: 'center',
     }
 })
